@@ -1,0 +1,27 @@
+package main
+
+import (
+    "fmt"
+    "log"
+    "net/http"
+    "encoding/json"
+    "github.com/gorilla/mux"
+)
+
+… // Existing code from above
+func handleRequests() {
+    myRouter := mux.NewRouter().StrictSlash(true)
+       myRouter.HandleFunc("/", homePage)
+    myRouter.HandleFunc("/all", returnAllArticles)
+   
+    log.Fatal(http.ListenAndServe(":10000", myRouter))
+}
+
+func main() {
+    fmt.Println("Rest API v2.0 - Mux Routers")
+    Articles = []Article{
+        Article{Title: "Hello", Desc: "Article Description", Content: "Article Content"},
+        Article{Title: "Hello 2", Desc: "Article Description", Content: "Article Content"},
+    }
+    handleRequests()
+}
